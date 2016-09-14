@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Todo List and Time Track",
+  "version" : "1.0.0",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Todo List"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["popup.js"]
+    }
+  ]
+}
