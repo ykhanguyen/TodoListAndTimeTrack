@@ -52,7 +52,10 @@ function setUpSlide() {
             console.log(ui.draggable.children("input")[0].value);
             //ui.draggable.draggable('option','revert',false);
             //ui.draggable.children("input")[0].value = $(this).children("input")[0].value -1;
-            ui.draggable.children("input").attr("value", $(this).children("input")[0].value -1);
+            ui.draggable.children("input").attr("value", $(this).children("input")[0].value );
+            console.log(parseInt($(this).children("input")[0].value) + 1 );
+            $(this).children("input").attr("value",parseInt($(this).children("input")[0].value) + 1 );
+
             showValue();
             setUpButton();
             console.log($(this).children("input")[0].value);
