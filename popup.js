@@ -20,11 +20,18 @@ window.onload = function() {
     $("#plus").click(function() {
         $("#add").fadeToggle();
     });
+
+
+
     setUpButton();
 };
 
 function setUpButton() {
-
+    $(".sliders").hover(function() {
+        $(this).children().not("p").not(".project").not(".slider-for-each-todo").fadeIn();
+    }, function() {
+        $(this).children().not("p").not(".project").not(".slider-for-each-todo").fadeOut();
+    });
 
     $(".prior").each(function() {
         $(this).click(prior_func);
@@ -45,7 +52,7 @@ function setUpButton() {
 
 function createNewTask(chatInput, projectInput, priorInput) {
     var task = jQuery("<div/>", {
-        "class": "sliders container"
+        "class": "sliders container",
     });
     if (chatInput == "") {
         chatInput = "N/A";
@@ -57,6 +64,7 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
     var project = jQuery("<button/>", {
         "class": "project btn-xs btn-info"
+
     });
     if (projectInput == "") {
         projectInput = "N/A";
@@ -66,7 +74,10 @@ function createNewTask(chatInput, projectInput, priorInput) {
     project.appendTo(task);
 
     var prior = jQuery("<button/>", {
-        "class": "glyphicon glyphicon-chevron-down prior btn-xs btn-warning"
+        "class": "glyphicon glyphicon-chevron-down prior btn-xs btn-warning",
+
+        "style": "display: none"
+
     });
 
 
@@ -78,7 +89,9 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
 
     var remove = jQuery("<button/>", {
-        "class": "glyphicon glyphicon-remove remove btn-danger btn-xs"
+        "class": "glyphicon glyphicon-remove remove btn-danger btn-xs",
+
+        "style": "display: none"
     });
 
     remove.appendTo(task);
@@ -86,7 +99,9 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
 
     var finished = jQuery("<button/>", {
-        "class": "finished glyphicon glyphicon-ok btn-success btn-xs"
+        "class": "finished glyphicon glyphicon-ok btn-success btn-xs",
+
+        "style": "display: none"
     });
 
 
