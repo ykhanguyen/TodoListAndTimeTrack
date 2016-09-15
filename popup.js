@@ -28,9 +28,9 @@ window.onload = function() {
 
 function setUpButton() {
     $(".sliders").hover(function() {
-        $(this).children().not("p").not(".project").not(".slider-for-each-todo").fadeIn();
+        $(this).children().not("p").not(".project").not(".slider-for-each-todo").show();
     }, function() {
-        $(this).children().not("p").not(".project").not(".slider-for-each-todo").fadeOut();
+        $(this).children().not("p").not(".project").not(".slider-for-each-todo").hide();
     });
 
     $(".prior").each(function() {
