@@ -43,16 +43,28 @@ function setUpButton() {
 
 function createNewTask(chatInput, projectInput, priorInput) {
     var task = jQuery("<div/>", {
-        "class": "sliders"
+        "class": "sliders container"
     });
-    
+    if (chatInput == "") {
+        chatInput = "N/A";
+    }
     var todo = document.createElement("p");
     todo.className = "todo";
     todo.innerHTML = chatInput;
     task[0].appendChild(todo);
 
+    var project = jQuery("<button/>", {
+        "class": "project btn-xs btn-info"
+    });
+    if (projectInput == "") {
+        projectInput = "N/A";
+    }
+    project.html(projectInput);
+
+    project.appendTo(task);
+
     var prior = jQuery("<button/>", {
-        "class": "glyphicon glyphicon-chevron-down prior"
+        "class": "glyphicon glyphicon-chevron-down prior btn-xs btn-warning"
     });
 
 
@@ -64,7 +76,7 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
 
     var remove = jQuery("<button/>", {
-        "class": "glyphicon glyphicon-remove remove"
+        "class": "glyphicon glyphicon-remove remove btn-danger btn-xs"
     });
 
     remove.appendTo(task);
@@ -72,8 +84,9 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
 
     var finished = jQuery("<button/>", {
-        "class": "finished glyphicon glyphicon-ok"
+        "class": "finished glyphicon glyphicon-ok btn-success btn-xs"
     });
+
 
     finished.appendTo(task);
     finished.click(finished_func); 

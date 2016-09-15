@@ -1,7 +1,8 @@
 body {
     width: 300px;
-    height: 500px;
     text-align: center;
+    overflow: scroll;
+    background-color: #e4b9b9;
 }
 
 #add {
@@ -22,11 +23,38 @@ body {
 .finished, .remove, .prior {
     float: right;
 }
-.todo {
+.project {
     float: left;
+}
+.todo {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .sliders {
     clear: both;
+    text-align: left;
+    background-color: #dff0d8;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
+.sliders:hover {
+    border: 1px solid black;
+    -moz-box-shadow: 5px 5px 3px gray;
+    -webkit-box-shadow: 5px 5px 3px gray;
+    box-shadow: 5px 5px 3px gray;
+}
+
+#rearrage {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.whole-page {
+    margin-top: 10px;
+    max-height: 300px;
+    overflow: scroll;
+}
+.slider-for-each-todo{
+    margin-top: 10px;
+}
