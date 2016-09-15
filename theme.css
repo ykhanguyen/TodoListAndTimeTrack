@@ -18,3 +18,14 @@ body {
 #chat-input {
 
 }
+
+.finished, .remove, .prior {
+    float: right;
+}
+.todo {
+    float: left;
+}
+
+.sliders {
+    clear: both;
+}

@@ -17,7 +17,7 @@ window.onload = function() {
         e.preventDefault();
 
         console.log($('#chat-input')[0].value);
-        createNewTask($('#chat-input'), $('#project-input'));
+        createNewTask($('#chat-input')[0].value, $('#project-input')[0].value);
 
         $('#chat-input')[0].value = '';
         $('#project-input')[0].value = '';
@@ -27,13 +27,74 @@ window.onload = function() {
     $("#plus").click(function() {
         $("#add").fadeToggle();
     });
+
+    $(".prior").each(function() {
+       $(this).click(prior_func);
+    });
+    $(".remove").each(function() {
+        $(this).click(remove_func);
+    });
+    $(".finished").each(function() {
+        $(this).click(finished_func);
+    });
 };
 
 function createNewTask(chatInput, projectInput) {
+    var task = jQuery("<div/>", {
+        "class": "sliders"
+    });
     
+    var todo = document.createElement("p");
+    todo.className = "todo";
+    todo.innerHTML = chatInput;
+    task[0].appendChild(todo);
+
+    var prior = jQuery("<button/>", {
+        "class": "glyphicon glyphicon-chevron-down prior"
+    });
+
+
+    prior.appendTo(task);
+
+    //prior.click(prior_func);
+    prior.click(prior_func);
+
+
+
+    var remove = jQuery("<button/>", {
+        "class": "glyphicon glyphicon-remove remove"
+    });
+
+    remove.appendTo(task);
+    remove.click(remove_func);
+
+
+    var finished = jQuery("<button/>", {
+        "class": "finished glyphicon glyphicon-ok"
+    });
+
+    finished.appendTo(task);
+    finished.click(finished_func);
+
+
+
+
+    task.appendTo(".whole-page");
+
+    //$(prior).attr("onclick", "prior_func()");
+    localStorage.setItem("page", $(".whole-page").html() );
 }
 
-
+function prior_func() {
+    alert("hellow");
+}
+function finished_func() {
+    alert("hellow");
+}
+function remove_func() {
+    console.log("remove");
+    $(this).parent().remove();
+}
 // adjust value
 function adjustValue() {
     $(this).attr("value", this.value);
