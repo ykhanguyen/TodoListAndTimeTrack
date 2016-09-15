@@ -1,4 +1,20 @@
 body {
     width: 300px;
     height: 500px;
+    text-align: center;
+}
+
+#add {
+    margin-top: 10px;
+    width:270px;
+    height: 210px;
+    display:none;
+    border: 1px solid black;
+    border-radius: 25%;
+    overflow: hidden;
+
+}
+
+#chat-input {
+
 }

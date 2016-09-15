@@ -12,6 +12,24 @@
 
 </head>
 <body>
+    <button class="btn glyphicon glyphicon-plus" id="plus"></button>
+    <button class="btn glyphicon glyphicon-time"></button>
+    <div class="container" id="add">
+
+        <form id="chat-form">
+            <p>Add your new todo</p>
+            <input id="chat-input" type="text" />
+
+            <p>Add your project name</p>
+            <input id="project-input" type="text" />
+
+            <p>Priority</p>
+            <input value="50" type="range" min="0" max="100">
+
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
     <div class="container whole-page">
         <div class="sliders">
             A1
@@ -27,12 +45,6 @@
             <input id="3" name="A3" value="50" type="range" min="0" max="100">
         </div>
 
-        <!-- this is the list after the slider -->
-        <ol> This is the sort version of the value of the sliders
-            <li id="first" > A1 </li>
-            <li id="second" > A2 </li>
-            <li id="third" > A3 </li>
-        </ol>
     </div>
 
     <button id="rearrage" class="btn">

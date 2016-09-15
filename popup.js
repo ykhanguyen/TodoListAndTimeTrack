@@ -13,8 +13,26 @@ window.onload = function() {
     $("#2").change(adjustValue);
     $("#3").change(adjustValue);
     $("#rearrage").click(showValue);
+    $('#chat-form')[0].onsubmit = function(e){
+        e.preventDefault();
 
+        console.log($('#chat-input')[0].value);
+        createNewTask($('#chat-input'), $('#project-input'));
+
+        $('#chat-input')[0].value = '';
+        $('#project-input')[0].value = '';
+        $("#add").fadeToggle();
+    };
+
+    $("#plus").click(function() {
+        $("#add").fadeToggle();
+    });
 };
+
+function createNewTask(chatInput, projectInput) {
+    
+}
+
 
 // adjust value
 function adjustValue() {
@@ -42,9 +60,5 @@ function redecorate(elements) {
         $(".whole-page").append($(elements[i])[0].name);
         $(".whole-page").append($(elements[i])[0]);
     }
-    /*
-    document.getElementById("first").innerHTML = elements[0].name;
-    document.getElementById("second").innerHTML = elements[1].name;
-    document.getElementById("third").innerHTML = elements[2].name;
-    */
 }
+
