@@ -17,6 +17,7 @@ body {
     z-index: 9999;
 }
 
+
 #chat-input {
 
 }
@@ -35,9 +36,11 @@ body {
 .sliders {
     clear: both;
     text-align: left;
-    background-color: #dff0d8;
+    background-color: whitesmoke;
     margin-top: 5px;
     margin-bottom: 5px;
+    top: 0px;
+
 }
 
 .sliders:hover {
