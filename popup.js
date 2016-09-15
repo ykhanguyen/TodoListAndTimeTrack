@@ -5,31 +5,29 @@
 window.onload = function() {
     // if any of the slider change, this will sort the list and update it
     if(localStorage.getItem("page") !== null) {
-        console.log("i'm here");
         $(".whole-page").html(localStorage.getItem("page"));
-        console.log(localStorage.getItem("page"));
     }
-    $("#1").change(adjustValue);
-    $("#2").change(adjustValue);
-    $("#3").change(adjustValue);
     $("#rearrage").click(showValue);
     $('#chat-form')[0].onsubmit = function(e){
         e.preventDefault();
 
-        console.log($('#chat-input')[0].value);
-        createNewTask($('#chat-input')[0].value, $('#project-input')[0].value);
+        createNewTask($('#chat-input')[0].value, $('#project-input')[0].value, $('#prior-input')[0].value);
 
         $('#chat-input')[0].value = '';
         $('#project-input')[0].value = '';
         $("#add").fadeToggle();
     };
 
+    setUpButton();
+};
+
+function setUpButton() {
     $("#plus").click(function() {
         $("#add").fadeToggle();
     });
 
     $(".prior").each(function() {
-       $(this).click(prior_func);
+        $(this).click(prior_func);
     });
     $(".remove").each(function() {
         $(this).click(remove_func);
@@ -37,9 +35,13 @@ window.onload = function() {
     $(".finished").each(function() {
         $(this).click(finished_func);
     });
-};
 
-function createNewTask(chatInput, projectInput) {
+    $(".slider-for-each-todo").each(function() {
+        $(this).change(adjustValue);
+    });
+}
+
+function createNewTask(chatInput, projectInput, priorInput) {
     var task = jQuery("<div/>", {
         "class": "sliders"
     });
@@ -74,10 +76,20 @@ function createNewTask(chatInput, projectInput) {
     });
 
     finished.appendTo(task);
-    finished.click(finished_func);
+    finished.click(finished_func); 
+    
+    var slider_bar = jQuery("<input/>", {
+        "class": "slider-for-each-todo",
+        "style": "display: none",
+        "value": priorInput,
+        "type": "range",
+        "min": "0",
+        "max": "100"
+    });
 
 
-
+    slider_bar.appendTo(task);
+    slider_bar.change(adjustValue);
 
     task.appendTo(".whole-page");
 
@@ -85,15 +97,16 @@ function createNewTask(chatInput, projectInput) {
     localStorage.setItem("page", $(".whole-page").html() );
 }
 
+
 function prior_func() {
-    alert("hellow");
+    $(this).next().next().next().fadeToggle();
 }
 function finished_func() {
     alert("hellow");
 }
 function remove_func() {
-    console.log("remove");
     $(this).parent().remove();
+    localStorage.setItem("page", $(".whole-page").html() );
 }
 // adjust value
 function adjustValue() {
@@ -103,14 +116,19 @@ function adjustValue() {
 
 // create the array and sort it
 function showValue() {
-    var elements = [document.getElementById("1"), document.getElementById("2"), document.getElementById("3")];
+    //var elements = [document.getElementById("1"), document.getElementById("2"), document.getElementById("3")];
+    var elements = $(".whole-page").children();
+
     sort(elements);
     localStorage.setItem("page", $(".whole-page").html() );
 }
-4
+
 // sort the array of slider
 function sort(elements) {
-    elements.sort(function (a,b) {return b.value - a.value});
+    elements.sort(function (a,b) {
+        //return b.value - a.value;
+        return $(b).children("input")[0].value - $(a).children("input")[0].value;
+    });
     redecorate(elements);
 }
 
@@ -118,8 +136,8 @@ function sort(elements) {
 function redecorate(elements) {
     $(".whole-page").html("");
     for (var i = 0; i < elements.length; i++) {
-        $(".whole-page").append($(elements[i])[0].name);
         $(".whole-page").append($(elements[i])[0]);
     }
+    setUpButton();
 }
 

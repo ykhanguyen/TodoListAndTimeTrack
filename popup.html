@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="theme.css"/>
+    <script type="text/javascript" src="jquery-3.1.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -24,33 +26,18 @@
             <input id="project-input" type="text" />
 
             <p>Priority</p>
-            <input value="50" type="range" min="0" max="100">
+            <input id="prior-input" value="50" type="range" min="0" max="100">
 
             <input type="submit" value="Submit">
         </form>
 
     </div>
     <div class="container whole-page">
-        <div class="sliders">
-            A1
-            <input id="1" name="A1" value="50" type="range" min="0" max="100">
-        </div>
-        <div class="sliders">
-            A2
-            <input id="2"  name="A2" value="50" type="range" min="0" max="100">
-        </div>
-
-        <div class="sliders">
-            A3
-            <input id="3" name="A3" value="50" type="range" min="0" max="100">
-        </div>
-
     </div>
 
     <button id="rearrage" class="btn">
         Rearrage the list
     </button>
-    <script type="text/javascript" src="jquery-3.1.0.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>
