@@ -15,16 +15,17 @@ window.onload = function() {
 
         $('#chat-input')[0].value = '';
         $('#project-input')[0].value = '';
+        showValue();
         $("#add").fadeToggle();
     };
-
+    $("#plus").click(function() {
+        $("#add").fadeToggle();
+    });
     setUpButton();
 };
 
 function setUpButton() {
-    $("#plus").click(function() {
-        $("#add").fadeToggle();
-    });
+
 
     $(".prior").each(function() {
         $(this).click(prior_func);
@@ -38,8 +39,10 @@ function setUpButton() {
 
     $(".slider-for-each-todo").each(function() {
         $(this).change(adjustValue);
+        $(this).attr("style", "display: none;");
     });
 }
+
 
 function createNewTask(chatInput, projectInput, priorInput) {
     var task = jQuery("<div/>", {
@@ -93,7 +96,7 @@ function createNewTask(chatInput, projectInput, priorInput) {
     
     var slider_bar = jQuery("<input/>", {
         "class": "slider-for-each-todo",
-        "style": "display: none",
+        "style": "display: none;",
         "value": priorInput,
         "type": "range",
         "min": "0",
@@ -113,6 +116,9 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
 function prior_func() {
     $(this).next().next().next().fadeToggle();
+
+
+    localStorage.setItem("page", $(".whole-page").html() );
 }
 function finished_func() {
     alert("hellow");

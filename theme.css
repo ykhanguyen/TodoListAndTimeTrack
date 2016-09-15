@@ -11,9 +11,9 @@ body {
     height: 210px;
     display:none;
     border: 1px solid black;
-    border-radius: 25%;
+    border-radius: 15%;
     overflow: hidden;
-
+    background-color: lightblue;
 }
 
 #chat-input {
@@ -52,7 +52,7 @@ body {
 }
 .whole-page {
     margin-top: 10px;
-    max-height: 300px;
+    max-height: 400px;
     overflow: scroll;
 }
 .slider-for-each-todo{
