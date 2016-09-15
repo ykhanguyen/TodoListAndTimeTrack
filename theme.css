@@ -2,7 +2,7 @@ body {
     width: 300px;
     text-align: center;
     overflow: scroll;
-    background-color: #e4b9b9;
+    z-index: 0;
 }
 
 #add {
@@ -14,6 +14,7 @@ body {
     border-radius: 15%;
     overflow: hidden;
     background-color: lightblue;
+    z-index: 9999;
 }
 
 #chat-input {

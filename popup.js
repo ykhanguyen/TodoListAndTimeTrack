@@ -7,7 +7,6 @@ window.onload = function() {
     if(localStorage.getItem("page") !== null) {
         $(".whole-page").html(localStorage.getItem("page"));
     }
-    $("#rearrage").click(showValue);
     $('#chat-form')[0].onsubmit = function(e){
         e.preventDefault();
 
@@ -130,6 +129,7 @@ function remove_func() {
 // adjust value
 function adjustValue() {
     $(this).attr("value", this.value);
+    showValue();
     localStorage.setItem("page", $(".whole-page").html() );
 }
 
