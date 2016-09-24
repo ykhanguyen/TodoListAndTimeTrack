@@ -22,6 +22,7 @@ adjusts the priority bar.
 
 ###Optional###
 - [ ] nice theme.
+- [x] drag the task to adjust priority and its position.
 
 
 ###Skills###
