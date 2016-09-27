@@ -22,8 +22,7 @@ window.onload = function () {
 
 
         var map = new Object();
-        map["kha"] = "cool";
-
+        console.log(map["yeah"]);
         localStorage.setItem("map", JSON.stringify(map));
     }
     $('#chat-form')[0].onsubmit = function (e) {
@@ -40,16 +39,44 @@ window.onload = function () {
         $("#add").fadeToggle();
     });
 
+    $("#hours_button").click(function() {
+
+        changeHours();
+        $("#main").toggle();
+        $("#hours").toggle();
+        $("#hours_button").toggle();
+        $("#todo_button").toggle();
+        $("#plus").toggle();
+        $("#all-down").toggle();
+        
+    });
+
+    $("#todo_button").click(function() {
+        $("#main").toggle();
+        $("#hours").toggle();
+        $("#hours_button").toggle();
+        $("#todo_button").toggle();
+        $("#plus").toggle();
+        $("#all-down").toggle();
+
+    });
+
     $("#all-down").click(function() {
        $(".sliders").each(function() {
            $(this).children("input").fadeToggle();
     })});
 
-
-    //console.log(get("kha"));
-
     setUpButton();
 };
+
+function changeHours() {
+    var map = JSON.parse(localStorage.getItem("map"));
+    console.log(map);
+    for (var key in map) {
+        console.log(key + ": " + (parseInt(map[key]) + 3));
+    }
+    $("#hours").html("hello");
+}
 
 function setUpSlide() {
     //$(".whole-page").html(localStorage.getItem("page"));
@@ -239,19 +266,18 @@ function finished_func() {
         $(this).parent().fadeOut().remove();
         var map_json = localStorage.getItem("map");
         var map = JSON.parse(map_json);
-        map["kha"] = "yeah" + 3;
 
         var key = $(this).parent().children(".project").html();
+        if (map[key] === undefined) {
+            map[key] = ($(this).children("input"))[0].value;
+        } else {
+            var old = parseInt(map[key]);
+            map[key] = parseInt(($(this).children("input"))[0].value) + old;
+        }
 
-        map[key] = ($(this).children("input"))[0].value;
         localStorage.setItem("map", JSON.stringify(map));
         console.log(localStorage.getItem("map"));
 
-        //console.log(map);
-        //map["kha"] = "cool";
-        //localStorage.setItem("map", map);
-        //console.log(map["kha"]);
-        //console.log(localStorage.getItem("map").get("kha"));
         localStorage.setItem("page", $(".whole-page").html());
     });
 

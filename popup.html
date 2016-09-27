@@ -17,27 +17,37 @@
 </head>
 <body>
     <h3> Todo List</h3>
+
+    <button class="btn glyphicon glyphicon-time btn-default" id="hours_button"></button>
+    <button class="btn glyphicon glyphicon-tasks btn-default" id="todo_button" style="display: none"></button>
     <button class="btn glyphicon glyphicon-plus btn-default" id="plus"></button>
-    <button class="btn glyphicon glyphicon-time btn-default"></button>
     <button class="btn glyphicon glyphicon-chevron-down btn-default" id="all-down"></button>
-    <div class="container" id="add">
+    <div id="main">
+        <div class="container" id="add">
 
-        <form id="chat-form">
-            <p>Add your new todo</p>
-            <input id="chat-input" type="text" />
+            <form id="chat-form">
+                <p>Add your new todo</p>
+                <input id="chat-input" type="text" />
 
-            <p>Add your project name</p>
-            <input id="project-input" type="text" />
+                <p>Add your project name</p>
+                <input id="project-input" type="text" />
 
-            <p>Priority</p>
-            <input id="prior-input" value="50" type="range" min="0" max="1000">
+                <p>Priority</p>
+                <input id="prior-input" value="50" type="range" min="0" max="1000">
 
-            <input type="submit" value="Submit">
-        </form>
+                <input type="submit" value="Submit">
+            </form>
 
+        </div>
+        <div class='cloned-slides' id='cloned-slides'></div>
+        <div class="container whole-page">
+        </div>
     </div>
-    <div class='cloned-slides' id='cloned-slides'></div>
-    <div class="container whole-page">
+
+    <div id="hours" style="display: none" class="container">
+        <p>
+        You haven't finished any task!!!
+        </p>
     </div>
 
 </body>
