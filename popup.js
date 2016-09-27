@@ -7,6 +7,8 @@
 
 
 
+var map;
+
 window.onload = function () {
     // if any of the slider change, this will sort the list and update it
     if (localStorage.getItem("page") !== null) {
@@ -15,6 +17,12 @@ window.onload = function () {
         $(".sliders").css("top", "0px");
         $(".sliders").children().not("p").not(".project").not(".slider-for-each-todo").hide();
         $(".slider-for-each-todo").hide();
+        map = localStorage.getItem("map");
+    } else {
+        map = new Object();
+        map["kha"] = "yeah";
+        map["kha"] = "no";
+        localStorage.setItem("map", map);
     }
     $('#chat-form')[0].onsubmit = function (e) {
         e.preventDefault();
@@ -34,6 +42,10 @@ window.onload = function () {
        $(".sliders").each(function() {
            $(this).children("input").fadeToggle();
     })});
+
+
+
+    console.log(get("kha"));
 
     setUpButton();
 };
@@ -225,8 +237,31 @@ function finished_func() {
 }
 
 function remove_func() {
-    $(this).parent().fadeOut().remove();
-    localStorage.setItem("page", $(".whole-page").html());
+
+
+    var form_input = $("<form>");
+    form_input.appendTo($(this).parent());
+
+    var input = $("<input>", {
+       type: "number",
+        name: "hours",
+        placeholder: "input total hours"
+    });
+
+    input.appendTo(form_input);
+
+    $(form_input).submit(function() {
+        $(this).parent().fadeOut().remove();
+        localStorage.setItem("page", $(".whole-page").html());
+        var map = localStorage.getItem("map");
+        map["kha"] = "cool";
+        localStorage.setItem("map", map);
+        console.log(localStorage.getItem("map"));
+    });
+
+    $(this).parent().children("button").remove();
+
+
 }
 
 // adjust value
@@ -258,4 +293,8 @@ function redecorate(elements) {
         $(".whole-page").append($(elements[i])[0]);
     }
     setUpButton();
+}
+
+function get(k) {
+    return map[k];
 }
