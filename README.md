@@ -4,7 +4,7 @@ Time spent: ~20 hours
 
 ##Description##
 
-This is Google Chrome Extension's Todo list app. It keeps track of the time each task takes to finish. 
+This is Google Chrome Extension's Todo list app. It keeps track of the time of each task. 
 
 ##Features##
 
@@ -37,3 +37,6 @@ adjusts the priority bar.
 > jQuery
 
 > Local Storage
+
+##Walkthrough##
+Check out my [tutorial on Youtube](https://youtu.be/Sbi5Yw_ZkcQ)
