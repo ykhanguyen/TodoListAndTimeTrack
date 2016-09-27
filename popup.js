@@ -16,6 +16,8 @@ window.onload = function () {
         $(".sliders").css("top", "0px");
         $(".sliders").children().not("p").not(".project").not(".slider-for-each-todo").hide();
         $(".slider-for-each-todo").hide();
+        $(".slider-for-each-todo").css("opacity", "1");
+
     }
     console.log(localStorage.getItem("map"));
     if (localStorage.getItem("map") === null) {
@@ -40,7 +42,7 @@ window.onload = function () {
     });
 
     $("#hours_button").click(function() {
-
+        $("#title").html("Time Track")
         changeHours();
         $("#main").toggle();
         $("#hours").toggle();
@@ -52,6 +54,7 @@ window.onload = function () {
     });
 
     $("#todo_button").click(function() {
+        $("#title").html("Todo List");
         $("#main").toggle();
         $("#hours").toggle();
         $("#hours_button").toggle();
@@ -71,11 +74,14 @@ window.onload = function () {
 
 function changeHours() {
     var map = JSON.parse(localStorage.getItem("map"));
-    console.log(map);
+    console.log(map.length);
+    $("#hours").html("");
     for (var key in map) {
-        console.log(key + ": " + (parseInt(map[key]) + 3));
+        var new_p = $("<p>");
+        $(new_p).html("<strong>" + key + "</strong>"+ ": " + parseInt(map[key]) + " hour(s).");
+        //console.log();
+        $("#hours").append(new_p);
     }
-    $("#hours").html("hello");
 }
 
 function setUpSlide() {
@@ -264,6 +270,7 @@ function finished_func() {
 
     $(form_input).submit(function() {
         $(this).parent().fadeOut().remove();
+
         var map_json = localStorage.getItem("map");
         var map = JSON.parse(map_json);
 
@@ -280,8 +287,8 @@ function finished_func() {
 
         localStorage.setItem("page", $(".whole-page").html());
     });
-
     $(this).parent().children("button").not(".project").remove();
+
 }
 
 function remove_func() {
