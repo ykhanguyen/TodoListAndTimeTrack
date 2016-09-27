@@ -13,6 +13,8 @@ window.onload = function () {
         $(".whole-page").html(localStorage.getItem("page"));
 
         $(".sliders").css("top", "0px");
+        $(".sliders").children().not("p").not(".project").not(".slider-for-each-todo").hide();
+        $(".slider-for-each-todo").hide();
     }
     $('#chat-form')[0].onsubmit = function (e) {
         e.preventDefault();
@@ -30,7 +32,7 @@ window.onload = function () {
 
     $("#all-down").click(function() {
        $(".sliders").each(function() {
-           $(this).children("input").fadeIn();
+           $(this).children("input").fadeToggle();
     })});
 
     setUpButton();
@@ -66,8 +68,10 @@ function setUpSlide() {
 
 function setUpButton() {
 
-    $(".sliders").click(function () {
+    $(".sliders").hover(function () {
         $(this).children().not("p").not(".project").not(".slider-for-each-todo").fadeIn();
+    }, function() {
+        $(this).children().not("p").not(".project").not(".slider-for-each-todo").hide();
     });
 
     setUpSlide();
@@ -120,7 +124,7 @@ function setUpButton() {
 
     $(".slider-for-each-todo").each(function () {
         $(this).change(adjustValue);
-        $(this).attr("style", "display: none;");
+        //$(this).attr("style", "display: none;");
     });
 
 }
@@ -128,7 +132,7 @@ function setUpButton() {
 
 function createNewTask(chatInput, projectInput, priorInput) {
     var task = jQuery("<div/>", {
-        "class": "sliders container ui-widget-content",
+        "class": "sliders container ui-widget-content"
     });
     if (chatInput == "") {
         chatInput = "N/A";
@@ -138,7 +142,6 @@ function createNewTask(chatInput, projectInput, priorInput) {
     todo.className = "todo";
     todo.innerHTML = chatInput;
     task[0].appendChild(todo);
-
 
 
     var project = jQuery("<button/>", {
@@ -188,7 +191,7 @@ function createNewTask(chatInput, projectInput, priorInput) {
         "value": priorInput,
         "type": "range",
         "min": "0",
-        "max": "100"
+        "max": "1000"
     });
 
     slider_bar.appendTo(task);
@@ -203,7 +206,7 @@ function createNewTask(chatInput, projectInput, priorInput) {
 
 
 function prior_func() {
-    $(this).next().next().next().fadeIn();
+    $(this).next().next().next().fadeToggle();
     localStorage.setItem("page", $(".whole-page").html());
 }
 
@@ -251,7 +254,6 @@ function sort(elements) {
 // display the value
 function redecorate(elements) {
     $(".whole-page").html("");
-    console.log("i'm here 2");
     for (var i = 0; i < elements.length; i++) {
         $(".whole-page").append($(elements[i])[0]);
     }
