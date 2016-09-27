@@ -7,7 +7,6 @@
 
 
 
-var map;
 
 window.onload = function () {
     // if any of the slider change, this will sort the list and update it
@@ -17,12 +16,15 @@ window.onload = function () {
         $(".sliders").css("top", "0px");
         $(".sliders").children().not("p").not(".project").not(".slider-for-each-todo").hide();
         $(".slider-for-each-todo").hide();
-        map = localStorage.getItem("map");
-    } else {
-        map = new Object();
-        map["kha"] = "yeah";
-        map["kha"] = "no";
-        localStorage.setItem("map", map);
+    }
+    console.log(localStorage.getItem("map"));
+    if (localStorage.getItem("map") === null) {
+
+
+        var map = new Object();
+        map["kha"] = "cool";
+
+        localStorage.setItem("map", JSON.stringify(map));
     }
     $('#chat-form')[0].onsubmit = function (e) {
         e.preventDefault();
@@ -44,8 +46,7 @@ window.onload = function () {
     })});
 
 
-
-    console.log(get("kha"));
+    //console.log(get("kha"));
 
     setUpButton();
 };
@@ -223,45 +224,43 @@ function prior_func() {
 }
 
 function finished_func() {
-    $(this).parent().html("yeah");
-    var form_hours = $("<form/>");
-    form_hours.append('<input type="text" value="button">');
-
-    $(this).parent().append(form_hours);
-
-    form_hours.appendTo($(this).parent());
-    console.log($(this).parent());
-    console.log(form_hours);
-    localStorage.setItem("page", $(".whole-page").html());
-    //$(this).siblings(".remove").trigger("click");
-}
-
-function remove_func() {
-
-
     var form_input = $("<form>");
     form_input.appendTo($(this).parent());
 
     var input = $("<input>", {
-       type: "number",
+        type: "number",
         name: "hours",
-        placeholder: "input total hours"
+        placeholder: "input total hours",
     });
 
     input.appendTo(form_input);
 
     $(form_input).submit(function() {
         $(this).parent().fadeOut().remove();
-        localStorage.setItem("page", $(".whole-page").html());
-        var map = localStorage.getItem("map");
-        map["kha"] = "cool";
-        localStorage.setItem("map", map);
+        var map_json = localStorage.getItem("map");
+        var map = JSON.parse(map_json);
+        map["kha"] = "yeah" + 3;
+
+        var key = $(this).parent().children(".project").html();
+
+        map[key] = ($(this).children("input"))[0].value;
+        localStorage.setItem("map", JSON.stringify(map));
         console.log(localStorage.getItem("map"));
+
+        //console.log(map);
+        //map["kha"] = "cool";
+        //localStorage.setItem("map", map);
+        //console.log(map["kha"]);
+        //console.log(localStorage.getItem("map").get("kha"));
+        localStorage.setItem("page", $(".whole-page").html());
     });
 
-    $(this).parent().children("button").remove();
+    $(this).parent().children("button").not(".project").remove();
+}
 
-
+function remove_func() {
+    $(this).parent().fadeOut().remove();
+    localStorage.setItem("page", $(".whole-page").html());
 }
 
 // adjust value
@@ -295,6 +294,3 @@ function redecorate(elements) {
     setUpButton();
 }
 
-function get(k) {
-    return map[k];
-}
