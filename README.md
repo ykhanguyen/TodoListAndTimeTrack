@@ -40,3 +40,7 @@ adjusts the priority bar.
 
 ##Walkthrough##
 Check out my [tutorial on Youtube](https://youtu.be/Sbi5Yw_ZkcQ)
+
+
+##Note##
+I haven't uploaded my project onto Chrome Web Store because I will make my project look nicer in the near future! Thanks
